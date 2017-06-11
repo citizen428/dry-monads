@@ -1,4 +1,5 @@
 require 'dry/monads/either'
+require 'dry/monads/either/typed'
 require 'dry/monads/maybe'
 require 'dry/monads/try'
 require 'dry/monads/list'
@@ -38,6 +39,10 @@ module Dry
     # @return [Either::Left]
     def Left(value)
       Either::Left.new(value)
+    end
+
+    def Either(error, **options)
+      Either::Typed[error, **options]
     end
   end
 end

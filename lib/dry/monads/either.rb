@@ -11,7 +11,7 @@ module Dry
     class Either
       include Transformer
 
-      attr_reader :right, :left
+      attr_reader :right, :left, :type
 
       class << self
         # Wraps the given value with Right
@@ -21,6 +21,10 @@ module Dry
         def pure(value)
           Right.new(value)
         end
+      end
+
+      def initialize(type)
+        @type = type
       end
 
       # Returns self, added to keep the interface compatible with other monads.
@@ -48,7 +52,9 @@ module Dry
         alias right value!
 
         # @param right [Object] a value in a correct state
-        def initialize(value)
+        def initialize(value, type = nil)
+          super(type)
+
           @value = value
         end
 
