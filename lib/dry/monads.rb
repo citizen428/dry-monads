@@ -1,5 +1,5 @@
 require 'dry/monads/either'
-require 'dry/monads/either/typed'
+require 'dry/monads/either/fixed'
 require 'dry/monads/maybe'
 require 'dry/monads/try'
 require 'dry/monads/list'
@@ -42,7 +42,7 @@ module Dry
     end
 
     def Either(error, **options)
-      Either::Typed[error, **options]
+      Either::Fixed[error, **options]
     end
   end
 end
